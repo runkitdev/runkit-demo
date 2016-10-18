@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lodash Examples</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src = "https://embed.runkit.com/"></script>
+
+  <style>
+
+body{
+    font-family:Segoe UI,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size:1.6rem;
+    line-height:1.5;
+    min-height:100%;
+    overflow:auto
+}
+
+.navbar {
+    margin-bottom: 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border: none;
+}
+
+.navbar-nav {
+    margin: 0;
+}
+
+.nav>li {
+    top: 4pt;
+}
+
+.nav>li>a {
+    display: inline-block;
+    float: left;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    background: #283646;
+    color: #fff;
+}
+
+.jumbotron {
+    background-color: #ebf2f8;
+    color: #283646;
+    padding-top:0px;
+    height:100vh;
+}
+
+.jumbotron a {
+
+    border-bottom:1px solid #d4d4d4;
+    color:#4b71ca;
+    padding-bottom:3px;
+    text-decoration:none
+    color: #769fff;
+}
+
+.jumbotron p {
+    font-size: 14pt;
+}
+
+.container {
+    padding: 14px 20px 10px 20px;
+}
+
+.highlight{
+    background: #fff;
+    color:#ddd;
+    margin: 0;
+    padding: 15px 20px;
+    position:relative
+}
+.highlight,.highlight pre{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch
+}
+.highlight pre{
+    padding:0
+}
+
+.highlight.js .comment{
+    color: #777;
+}
+.highlight.js .modifier,.highlight.js .numeric,.highlight.js .type{
+    color: #f39417;
+}
+.highlight.js .name,.highlight.js .support{
+    color: #86b9f5;
+}
+.highlight.js .console{
+    color: #ddd;
+}
+.highlight.html .string,.highlight.js .string{
+    color: #76A000;
+}
+
+pre {
+    background: initial;
+    border: none;
+    color: #999;
+
+}
+
+.bounce {
+  animation: bounce 1s;
+  transform: scale(1);
+}
+/*400 134*/
+/*440 146*/
+/* Standard syntax */ 
+@keyframes bounce {      
+  0% { transform: scale(1); }
+  30% { transform: scale(1.1); } /* 0.8 * 1.1 = 0.88; 40 * 0.88 + 35 = -72.2; -12 * 0.88 = -10.56 */
+  50% { transform: scale(0.95); } /* 0.95 */
+  85% { transform: scale(1.025); } /* 1.025 */
+  100% { transform: scale(1); } 
+}
+
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Lodash Examples</a>
+      <ul class="nav navbar-nav">
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Source</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron">
+
+<div class="container">
+<p>Creates an array of elements, sorted in ascending order by the results of running each element in a collection through each iteratee</p>
+</div>
+
+<div class="container" id="embed" style="display: none;"></div>
+<div style = "position:relative">
+<div id = "previous-code" class="highlight js intro"><pre class="container"><div><span class="type">var</span>&nbsp;users&nbsp;=&nbsp;[</div><div>&nbsp;&nbsp;{&nbsp;<span class="string">firstName</span>:&nbsp;<span class="string">"Fred"</span><span class="delimiter">,</span>&nbsp;&nbsp;&nbsp;<span class="string">lastName</span>:&nbsp;<span class="string">"Turing"</span>&nbsp;}<span class="delimiter">,</span></div><div>&nbsp;&nbsp;{&nbsp;<span class="string">firstName</span>:&nbsp;<span class="string">"Barney"</span><span class="delimiter">,</span>&nbsp;<span class="string">lastName</span>:&nbsp;<span class="string">"Johnson"</span>&nbsp;}<span class="delimiter">,</span></div><div>&nbsp;&nbsp;{&nbsp;<span class="string">firstName</span>:&nbsp;<span class="string">"Fred"</span><span class="delimiter">,</span>&nbsp;&nbsp;&nbsp;<span class="string">lastName</span>:&nbsp;<span class="string">"Michaels"</span>&nbsp;}</div><div>];</div><div>&nbsp;</div><div>_<span class="delimiter method">.</span><span class="name">sortBy</span>(users<span class="delimiter">,</span>&nbsp;user =&gt; user.lastName)</div></pre></div>
+
+<div id = "code-container" style = "padding:20px 55px 20px 75px; background: white; opacity:0; position:absolute;width:100%;top:0;left:0;">
+    <div style = "transform:scale(0.8); margin-left: -35px; transform-origin:0% 0%;">
+        <div id = "code" style = " width:500px;"></div>
+    </div>
+    <div id = "overlap" style = "margin-left:-75px; width:100%; height:50px; position:absolute; bottom:0; background-color:#ebf2f8;"></div>
+</div>
+</div>
+
+
+<br/>
+<br/>
+
+</body>
+<script src="https://embed.tonicdev.com"></script>
+<script>
+var evaluated = false;
+var notebook = Tonic.createNotebook({
+    // the parent element for the new notebook
+    element: document.getElementById("code"),
+    
+    preamble: "var _ = require(\"lodash\")",
+    
+    source:   `var users = [
+  { firstName: "Chris", lastName: "Turing" },
+  { firstName: "Barney", lastName: "Michaels" },
+  { firstName: "Fred", lastName: "Johnson" }
+];
+_.sortBy(users, user => user.lastName);`,
+    onResult: function () { evaluated = true; }
+});
+
+function replace()
+{
+    return new Promise(function (resolve, reject)
+    {    
+        document.addEventListener("animationend", function handle()
+        {
+            document.removeEventListener("animationend", handle);
+            resolve();
+        }, false);
+
+        document.getElementById("code-container").style.opacity = "1";
+
+        var previousCode = document.getElementById("previous-code");
+
+        previousCode.parentNode.removeChild(previousCode);
+
+        document.getElementById("code").className = "bounce";
+    });
+}
+
+function waitForEvaluate()
+{
+    return new Promise(function  (resolve, reject)
+    {
+        (function check()
+        {
+            if (evaluated)
+                resolve();
+            
+            setTimeout(check, 100);
+        })();
+    });
+}
+
+</script>
+</html>
