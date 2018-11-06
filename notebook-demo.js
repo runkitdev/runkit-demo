@@ -44,9 +44,9 @@ module.exports = async function NotebookDemo()
 
                     <wait delay = { 500 } />
 
-                    <mouse.click selector = ".engines-dropdown" />
+                    <mouse.click selector = "span[data-queriable-engines-drop-down=true]" />
                     <wait delay = { 500 } />
-                    <mouse.click selector = "span[value='6.x.x']" />
+                    <mouse.click selector = "span[value='10.x.x']" />
 
                     <clickLastRunButton />
 
